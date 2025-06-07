@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  tailscale-postgres:
+    image: tailscale/tailscale:stable
+    container_name: tailscale-postgres
+    hostname: tailscale-postgres
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - tailscale-postgres-state:/var/lib/tailscale
+    environment:
+      - TS_AUTHKEY=tskey-auth-kr5fnbVdB921CNTRL-9yKwgfaci1BYZQ1ddFee1BifJtnzsAHu
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+      - TS_EXTRA_ARGS=--accept-routes
+    command: tailscaled --state=/var/lib/tailscale/tailscaled.state
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    depends_on:
+      - tailscale-postgres
+    network_mode: service:tailscale-postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=saas_main
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  tailscale-postgres-state:
+  pgdata:

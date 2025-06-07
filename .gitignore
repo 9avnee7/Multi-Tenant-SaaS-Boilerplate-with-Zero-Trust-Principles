@@ -1,55 +1,95 @@
-# Dependencies
+# Node.js
 node_modules/
-*/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Build outputs
-dist/
-build/
-out/
+# Next.js build output
 .next/
+out/
+dist/
+
+# Logs
+logs/
+*.log
+*.out
+*.pid
+
+# dotenv environment variables
+.env
+.env.*
+!.env.example
 
 # Database
-*.db
 *.sqlite
-database/data/
+*.sqlite3
+*.db
+*.db-journal
+pgdata/
+tailscale-postgres-state/
+kc-db-data/
 
 # Docker
 docker-compose.override.yml
+docker-compose.*.yml
+**/docker-compose.override.yml
+**/docker-compose.*.yml
 
-# IDE
+# OPA
+infrastructure/opa/data/
+infrastructure/opa/policies/
+
+# Keycloak import/export
+keycloak-data/
+keycloak-db/
+keycloak-db-data/
+
+# IDEs and editors
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS
+# MacOS
 .DS_Store
-Thumbs.db
 
-# Logs
-logs/
-*.log
-
-# Runtime data
-pids/
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
+# Misc
 coverage/
-*.lcov
+*.tgz
 
-# Temporary folders
+# Build artifacts
+build/
 tmp/
 temp/
+.cache/
+.cache-loader/
+
+# Public files (optional, if generated)
+public/static/
+public/build/
+
+# Test output
+junit.xml
+test-output/
+
+# Ignore local config files
+jsconfig.json
+tsconfig.json
+next.config.js
+next.config.mjs
+postcss.config.js
+postcss.config.mjs
+tailwind.config.js
+tailwind.config.mjs
+
+# Ignore frontend and backend specific node_modules (if present)
+frontend/node_modules/
+backend/node_modules/
+
+# Ignore editor workspace files
+*.code-workspace
+
+# Ignore backup files
+*~

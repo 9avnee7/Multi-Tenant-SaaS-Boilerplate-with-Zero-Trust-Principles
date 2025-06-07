@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  opa:
+    image: openpolicyagent/opa:latest
+    container_name: opa
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./opa/policies:/policies  # Your local policy folder
+      - ./opa/data:/data          # Your data bundles if any
+    command:
+      - "run"
+      - "--server"
+      - "--addr=0.0.0.0:8181"
+      - "--watch"
+      - "/policies"
