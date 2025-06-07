@@ -19,7 +19,7 @@ const app = express();
 app.use(cors(
     //we will allow all headers for now
     {
-        origin: '*', // Adjust this to your frontend URL in production
+        origin: 'http://localhost:3000/*', // Adjust this to your frontend URL in production
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         allowedHeaders: 'Content-Type, Authorization, X-Tenant-Realm',
     }
