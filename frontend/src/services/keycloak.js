@@ -5,7 +5,7 @@ const realm = typeof window !== 'undefined' ? localStorage.getItem('tenantRealm'
 const keycloak = new Keycloak({
   url: 'http://localhost:8080/',
   realm,
-  clientId: 'saas-frontend',
+  clientId: process.env.NEXT_PUBLIC_KEYCLOAK_CLIENT_ID || 'saas-frontend',
 });
 
 
